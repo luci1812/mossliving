@@ -1,0 +1,252 @@
+<!-- /sections/search.liquid -->
+
+
+{%- liquid
+  assign has_filters = false
+  if search.filters != empty and section.settings.show_filters
+    assign has_filters = true
+  endif
+
+  assign wrapper_class = 'wrapper--narrow'
+  if has_filters
+    assign wrapper_class = 'wrapper'
+  endif
+
+  assign types = search.types | join: ',' | url_encode
+  assign types = 'type=' | append: types
+-%}
+
+<section class="{{ wrapper_class }} pt1 pb4" data-section-type="search-page" data-section-id="{{ section.id }}">
+  <div class="search__page__heading">
+    {% render 'search-bar' %}
+
+    {%- if search.terms.size > 0 -%}
+      <div class="note">
+        <p>
+          {%- if search.results_count > 0 -%}
+            {{ 'general.search.results_for' | t }} <span class="strong">{{ search.terms | escape }}</span>
+          {%- else -%}
+            {{ 'general.search.no_results_for' | t }} <span class="strong">{{ search.terms | escape }}</span>
+          {%- endif -%}
+        </p>
+      </div>
+    {%- endif -%}
+  </div>
+
+  {% if search.performed %}
+    <div data-section-id="{{ section.id }}"
+    data-section-type="collection"
+    data-sort="{{ section.settings.collection_sorting }}">
+
+  <div class="" data-sidebar-toggle>
+    <div class="">
+      {%- assign collection_sidebar = false -%}
+      {%- if section.blocks.size > 0 -%}
+        {%- assign collection_sidebar = true -%}
+      {%- endif -%}
+
+     
+        <nav class="collection__nav" data-collection-tools>
+          <div class="collection__nav__buttons ">
+            {% capture current_filters_count %}
+              {%- assign filter_count = 0 -%}
+              {%- for filter in collection.filters -%}
+                {%- assign filter_count = filter_count | plus: filter.active_values.size -%}
+              {%- endfor -%}
+              {%- if filter_count > 0 -%}
+                <div class="badge">{{ filter_count }}</div>
+              {%- endif -%}
+            {% endcapture %}
+            
+            <button class="collection__filters__toggle filters--default-visible drawer--visible" data-filters-toggle="filters">
+              <span class="hide-filters">{{ 'collections.sidebar.hide_filters' | t }}</span>
+              <span class="show-filters">{{ 'collections.sidebar.filter' | t }}</span>
+              <span data-active-filters-count>{{ current_filters_count }}</span>
+              {% render 'icon-filter' %}
+            </button>
+
+            <div class="collection__sort">              
+
+              <div class="popout--navbar">
+                <h2 class="visually-hidden" id="sort-heading">
+                  {{ 'collections.general.sort' | t }}
+                </h2>
+              
+                {%- capture sort_options -%}
+                  {%- assign current_sort_name = '' -%}
+                  {%- for option in search.sort_options -%}
+                    {%- assign active = false -%}
+                    {%- assign sort_by = search.sort_by | default: search.default_sort_by  -%}
+                    
+                    {%- if sort_by == option.value -%}
+                      {%- assign current_sort_name = option.name -%}
+                      {%- assign active = true -%}  
+                    {%- endif -%}
+                    
+                    <li class="popout-list__item {% if active %}popout-list__item--current{% endif %}">
+                      <a class="popout-list__option"
+                        data-value="{{ option.value }}"
+                        href="#"
+                        {% if active %}aria-current="true"{% endif %}
+                        data-sort-link>
+                        <span>{{ option.name }}</span>
+                      </a>
+                    </li>
+                  {%- endfor -%}
+                {%- endcapture -%}
+              
+                <popout-select>
+                  <div class="popout" data-sort-enabled="{{  search.sort_by | default: search.default_sort_by }}" data-popout>
+                    <button type="button"
+                      class="popout__toggle"
+                      aria-expanded="false"
+                      aria-controls="sort-list"
+                      aria-describedby="sort-heading"
+                      aria-label="{{ 'collections.general.sort' | t }}"
+                      data-popout-toggle>
+                      <span data-sort-button-text class="small-down--hide">{{ current_sort_name }}</span>
+                      <span class="medium-up--hide">{{ 'collections.general.sort' | t }}</span>
+                      {%- render 'icon-sort' -%}    
+                    </button>
+                    <ul id="sort-list" class="popout-list" data-popout-list>
+                      {{ sort_options }}
+                    </ul>
+                  </div>
+                </popout-select>
+              </div>
+            </div>
+          </div>
+
+          <div class="collection__layout">
+            <button data-focus-element aria-label="{{ 'general.accessibility.toggle_with_count' | t: count: 1 }}" data-toggle-grid="1">{% render 'icon-grid-1' %}</button>
+            <button data-focus-element aria-label="{{ 'general.accessibility.toggle_with_count' | t: count: 2 }}" data-toggle-grid="2">{% render 'icon-grid-2' %}</button>
+            <button data-focus-element aria-label="{{ 'general.accessibility.toggle_with_count' | t: count: 3 }}" data-toggle-grid="3">{% render 'icon-grid-3' %}</button>
+            <button data-focus-element aria-label="{{ 'general.accessibility.toggle_with_count' | t: count: 4 }}" data-toggle-grid="4">{% render 'icon-grid-4' %}</button>
+          </div>
+        </nav>
+
+        {%- if has_filters -%}
+        {%- assign filter_count = 0 -%}
+        {%- capture filter_clears -%}
+          {%- for filter in search.filters -%}
+            {% if filter.type == "price_range" %}
+              {%- if filter.min_value.value != nil or filter.max_value.value != nil -%}
+                {%- assign filter_count = filter_count | plus: 1 -%}
+                <a class="active__filters__remove" href="{{ filter.url_to_remove }}" data-filter-update-url>
+                  {%- assign min_value = filter.min_value.value | default: 0 -%}
+                  {%- assign max_value = filter.max_value.value | default: filter.range_max -%}
+                  {{ min_value | money_without_trailing_zeros }} - {{ max_value | money_without_trailing_zeros }} X
+                </a>
+              {%- endif -%}
+            {% else %}
+              {%- for filter_value in filter.active_values -%}
+                {%- assign filter_count = filter_count | plus: 1 -%}
+                <a class="active__filters__remove" href="{{ filter_value.url_to_remove }}" data-filter-update-url>
+                  {{ filter_value.label }} <span class="filter__x">X</span>
+                </a>
+              {%- endfor -%}
+            {% endif %}
+          {%- endfor -%}
+        {%- endcapture -%}
+                
+      {%- endif -%}
+  
+      <div class="collection__active__filters {% unless filter_count > 0 %}is-hidden{% endunless %}" data-active-filters>
+        {%- if filter_count > 1 -%}
+        <a href="{{ routes.search_url }}?{{ types }}&q={{ search.terms | url_encode }}" class="active__filters__clear" data-filter-update-url>{{ 'collections.sidebar.all_tags' | t }}</a>
+        {%- endif -%}
+        {{ filter_clears }}
+      </div>
+
+      <div class="collection__content">
+        {%- if has_filters -%}
+        <aside class="collection__filters__wrapper filters--default-visible" data-collection-sidebar data-filters="filters" data-default-hide="false">
+          <div class="collection__filters__outer">
+            <div class="drawer__top">
+              <div class="drawer__top__left">
+                <p class="cart__drawer__title">{{ 'collections.sidebar.filter' | t }}</p>
+              </div>
+
+              <button class="drawer__button drawer__close"
+                data-filters-toggle="filters"
+                aria-label="{{ 'general.accessibility.close' | t }}">
+                {% render 'icon-close' %}
+              </button>
+            </div>
+
+            <div class="collection__filters__inner">
+              <form data-sidebar-filter-form>
+                <input type="hidden" name="q" value="{{ search.terms }}">
+
+                {%- for filter in search.filters -%}
+                  {% render 'filters', filter: filter %}
+                {%- endfor -%}
+              </form>
+            </div>
+          </div>
+
+          <span class="drawer__underlay" data-filters-underlay>
+            <span class="drawer__underlay__fill"></span>
+            <span class="drawer__underlay__blur"></span>
+          </span>
+        </aside> 
+        
+      {%- endif -%}
+
+        {% paginate search.results by 9 %}  
+          
+          <div class="collection__products" data-products-grid>
+            <div class="js-grid" data-grid-large="3" data-grid-small="2">
+              <!-- /snippets/product-grid-item.liquid -->
+
+              {% for item in search.results %}
+                <div>
+                {% render 'product-grid-item', product: item %}
+                </div>              
+              {% endfor %}
+            </div>
+
+            {% if paginate.pages > 1 %}
+            <div class="text-center">
+              {% render 'pagination-custom', paginate: paginate, enable_ajax: true %}
+            </div>
+            {% endif %}           
+          </div>
+        {% endpaginate %}
+      </div>
+
+      {% if collection.description != blank %}
+        <div class="collection__footer ">
+
+          <h1 class="collection__title">{{ collection.title}}</h1>
+          <div class="collection__description h5--body rte js-description">{{ collection.description }}</div>      
+          <button class="button__read-more js-btn__read-more">Read more</button>
+        </div>        
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+  
+  </div>
+  {% endif %}
+
+</section>
+
+{% schema %}
+{
+  "name": "Search",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Search"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_filters",
+      "default": true,
+      "label": "Show product filters"
+    }
+  ]
+}
+{% endschema %}

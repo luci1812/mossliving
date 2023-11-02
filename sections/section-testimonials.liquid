@@ -1,0 +1,121 @@
+<div class="homepage-testimonials section-{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="testimonials" style="--bg: {{ section.settings.bg_color }}; --bg-accent: {{ section.settings.bg_accent }};">
+  <div class="wrapper">
+    {% if section.blocks.size > 0 %}
+      {% unless section.settings.title == '' %}
+        <h2 class="home__subtitle">{{ section.settings.title | escape }}</h2>
+      {% endunless %}
+      <div class="testimonials__wrapper flickity-badge-dots"
+        data-slideshow-wrapper
+        data-slideshow-autoplay="{{ section.settings.autoplay }}"
+        data-slideshow-slides="{{ section.blocks.size }}"
+        data-slideshow-speed="{{ section.settings.autoplay_speed | times: 1000 }}">
+        {% for block in section.blocks %}
+          <div class="testimonial" data-slideshow-index="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+            <div class="testimonial__Content {{ section.settings.text_align }}">
+              {% unless block.settings.quote == '' %}
+                <div class="testimonial__quote">
+                  {{ block.settings.quote }}
+                </div>
+              {% endunless %}
+              {% unless block.settings.author == '' %}
+                <p class="testimonial__author home--uppercase">
+                  {{ block.settings.author | escape }}
+                </p>
+              {% endunless %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Testimonials"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Auto-rotate slides",
+      "default": false
+    },
+    {
+      "type":    "range",
+      "id":      "autoplay_speed",
+      "min":     1,
+      "max":     15,
+      "step":    1,
+      "unit":    "sec",
+      "label":   "Change slides every",
+      "default": 8
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Alignment",
+      "default": "text-center",
+      "options": [
+        { "value": "text-left", "label": "Left"},
+        { "value": "text-center", "label": "Center"},
+        { "value": "text-right", "label": "Right"}
+      ]
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background",
+      "default": "#F5F5F5"
+    },
+    {
+      "type": "color",
+      "id": "bg_accent",
+      "label": "Background accent",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Text"
+        },
+        {
+          "type": "richtext",
+          "id": "quote",
+          "label": "Quote",
+          "default": "<p>Share what your customers are saying about your products, your company...</p>",
+          "info": "For best results, keep the word count consistent in each quote."
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author",
+          "default": "- tina"
+        }
+      ]
+    }
+  ],
+  "presets": [{
+    "name": "Testimonials",
+    "category": "Text",
+    "blocks": [
+      {
+        "type": "testimonial"
+      },
+      {
+        "type": "testimonial"
+      }
+    ]
+  }]
+}
+{% endschema %}

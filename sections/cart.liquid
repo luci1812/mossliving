@@ -1,0 +1,354 @@
+<!-- /sections/cart.liquid -->
+{%- liquid
+  assign hide_quantity = 'quantity--hide'
+  if settings.cart_show_quantity
+    assign hide_quantity = ''
+  endif
+  
+  assign ajax_disable = false
+  assign no_ajax_class = ''
+  if settings.cart_style == 'compatible'
+    assign ajax_disable = true
+    assign no_ajax_class = 'no--ajax'
+  endif
+
+  assign full_init = ''
+  assign empty_init = 'cart--hidden'
+  if cart.item_count == 0
+    assign empty_init = ''
+    assign full_init = 'cart--hidden'
+  endif
+-%}
+
+<div class="cart__template {{ no_ajax_class }} {{ hide_quantity }}"  data-section-id="{{ section.id }}" data-section-type="cart" data-ajax-disable="{{ ajax_disable }}">
+  {% comment %} Cart is empty {% endcomment %}
+  <div class="{{ empty_init }}" data-cart-empty>
+    {% render 'cart-empty' %}
+  </div>
+  {% comment %} Cart is full {% endcomment %}
+  <div class="wrapper pt2 pb4 {{ full_init }}" data-cart-form data-cart-loading>
+    <form action="{{ routes.cart_url }}" method="post" novalidate class="cart">
+      <h3 class="h3">{{ 'cart.general.title' | t }}</h3>
+      <div class="errors" data-form-errors style="display: none;"></div>
+      <div class="cart__items__grid cart__heading__wrapper">
+        <div class="cart__heading__back">
+          <a href="{{ settings.cart_continue_browsing | default: routes.all_products_collection_url }}" class="cart__heading cart__return">
+            {{ 'cart.general.continue_browsing' | t }}
+          </a>
+        </div>
+        <div class="cart__items__price">
+          <p class="cart__heading">{{ 'cart.label.price' | t }}</p>
+        </div>
+        <div class="cart__items__quantity">
+          <p class="cart__heading">{{ 'cart.label.quantity' | t }}</p>
+        </div>
+        <div class="cart__items__total">
+          <p class="cart__heading">{{ 'cart.label.total' | t }}</p>
+        </div>
+      </div>
+      <div class="template__cart__body">
+        <div class="errors" data-form-errors style="display: none;"></div>
+        <div data-cart-form>
+            {% comment %}
+              The following snippet is refreshed via ajax with
+              cart.items.liquid when the quantity is adjusted.
+            {% endcomment %}
+            <div data-line-items>
+            {% render 'cart-line-items' %}
+            </div>
+        </div>
+
+        <div class="template__cart__footer" data-cart-bottom>
+          
+          <div class="cart__footer__upsell upsell__holder">
+            {%- assign upsell_product = section.settings.product -%}
+            {%- assign upsell_error = false -%}
+            {%- assign upsell_variant = upsell_product.selected_or_first_available_variant -%}
+
+            {%- if upsell_product.title == '' or upsell_variant == nil -%}
+              {%- assign upsell_error = true -%}
+            {%- endif -%}
+
+            {%- if request.design_mode -%}
+              {%- assign upsell_error = false -%}
+            {%- endif -%}
+            <div class="" >
+              <h2 class="upsell__holder__title">{{ 'products.general.upsell_title' | t }}</h2>
+            
+              <div class="upsell">
+                <div class="upsell__image">
+                  {%- assign upsell_image = upsell_product.featured_media.preview_image -%}
+                  {%- if upsell_error -%}
+                    <div class="upsell__image__inner" style="background-color: var(--bg-accent);"></div>
+                  {%- elsif upsell_image -%}
+                    <a href="{{ upsell_product.url }}">
+                      <img class="upsell__image__inner" 
+                        loading="lazy" 
+                        alt="{{ upsell_image.alt | default: upsell_product.title | strip_html | escape }}" 
+                        src="{{ upsell_image.src | img_url: '180x180', crop: 'center' }}"
+                        width="90"
+                        height="90">
+                    </a>
+                  {%- else -%}
+                    <a href="{{ upsell_product.url }}">
+                      <div class="upsell__image__inner" style="background-color: var(--bg-accent);"></div>
+                    </a>
+                  {%- endif -%}
+                </div>
+            
+                <div class="upsell__content">
+                  {%- if upsell_error -%}
+                    <h3 class="upsell__title">{{ 'products.general.upsell_error_title' | t }}</h3>
+                    <p class="small">{{ 'products.general.upsell_error_info' | t }}</p> 
+                  {%- else -%}  
+                    <a href="{{ upsell_product.url }}">
+                      <h3 class="upsell__title">{{ upsell_product.title | strip_html }}</h3>
+            
+                      {%- unless upsell_product.has_only_default_variant -%}
+                        <p class="upsell__variant-title">{{ upsell_variant.title | replace: '/', '<span>&nbsp;</span>' }}</p> 
+                      {%- endunless -%}
+            
+                      <p class="upsell__price {% if upsell_variant.compare_at_price > upsell_variant.price %} sale{% endif %}">
+                        <span class="new-price">{{ upsell_variant.price | money }}</span>  
+                        
+                        {%- if upsell_variant.compare_at_price > upsell_variant.price -%}
+                          <span class="old-price">{{ upsell_variant.compare_at_price | money }}</span>
+                        {%- endif -%}
+                        
+                        {%- if upsell_variant.unit_price -%}
+                          {%- capture unit_price_separator -%}
+                            <span aria-hidden="true">/</span>
+                            <span class="visually-hidden">{{ 'general.accessibility.unit_price_separator' | t }}&nbsp;</span>
+                          {%- endcapture -%}
+            
+                          {%- capture unit_price_base_unit -%}
+                            {%- if upsell_variant.unit_price_measurement.reference_value != 1 -%}
+                              {{ upsell_variant.unit_price_measurement.reference_value }}
+                            {%- endif -%}
+                            {{ upsell_variant.unit_price_measurement.reference_unit }}
+                          {%- endcapture -%}
+                          
+                        <br />
+          
+                        <span class="visually-hidden visually-hidden--inline">{{ 'products.product.unit_price_label' | t }}</span>
+          
+                        <span class="unit">{{ upsell_variant.unit_price | money }}{{ unit_price_separator }}{{ unit_price_base_unit }}</span>
+                      {% endif -%}
+                      </p>  
+                    </a>
+      
+                    {%- if upsell_product.has_only_default_variant -%}
+                      {%- form 'product', upsell_product -%}
+                        <input type="hidden" name="id" value="{{ upsell_variant.id }}">
+                        
+                        <button 
+                          data-add-to-cart
+                          {% if show_form %} 
+                            type="submit" name="add"
+                          {% else %}
+                            data-add-to-cart-variant="{{ upsell_variant.id }}" 
+                          {% endif %} 
+                          class="upsell__btn uppercase btn--soft btn--small btn--primary
+                          {% unless upsell_variant.available %} is-hidden {% endunless %}"> 
+                          <span class="btn-state-ready">{{ 'products.general.upsell_add_to_cart' | t }}</span>
+      
+                          <span class="btn-state-loading">
+                            <svg height="18" width="18" class="svg-loader">
+                              <circle r="7" cx="9" cy="9" />
+                              <circle stroke-dasharray="87.96459430051421 87.96459430051421" r="7" cx="9" cy="9" />
+                            </svg>
+                          </span>
+      
+                          <span class="btn-state-complete">&nbsp;</span>
+                        </button>
+      
+                        <p class="upsell__out-of-stock {% if upsell_variant.available %} is-hidden{% endif %}">{{ 'products.general.upsell_out_of_stock' | t }}</p>
+                      {%- endform -%}
+                    {%- endif -%}
+      
+                    {%- unless upsell_product.has_only_default_variant -%}
+                      <button 
+                        data-popup-{{ upsell_product.id }}="{{ upsell_product.handle }}"
+                        class="upsell__btn uppercase btn--soft btn--small btn--primary"
+                        type="button"> 
+                        <span class="btn-state-ready">{{ 'products.general.upsell_add_to_cart' | t }}</span>
+                      </button>
+                    {%- endunless -%}
+                  {%- endif -%}
+                </div>
+              </div>
+      
+              <div data-add-action-errors class="add-action-errors">&nbsp;</div>
+      
+              {%- unless upsell_product.has_only_default_variant -%}
+                <script data-upsell-modal-template type="text/x-template">
+                  <div class="upsell__modal" data-upsell-modal id="{{ upsell_product.id }}" aria-hidden="true">
+                    <div class="upsell__modal__overlay" data-micromodal-close tabindex="-1"></div>
+      
+                    <div class="upsell__modal__content" role="dialog" aria-modal="true">
+                      <button type="button" data-micromodal-close class="upsell__modal__close" aria-label="{{ 'general.accessibility.close' | t }}"></button>
+      
+                      <div class="upsell__modal__inner" data-product-upsell-ajax></div>
+                    </div>
+                  </div>
+                </script>
+              {%- endunless -%}
+            </div>
+          </div>
+
+          <div class="cart__footer__notes">
+            {%- if settings.cart_notes_enable -%}
+              <label class="cart__notes__label" for="CartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
+              <textarea name="note" class="input-full" id="CartSpecialInstructions" data-cart-note>{{ cart.note }}</textarea>
+            {%- endif -%}
+          </div>
+          <div class="cart__footer__shipping">
+            {%- if settings.cart_shipping_enable -%}
+              {% render 'cart-shipping' %}
+            {%- endif -%}
+          </div>
+          <div class="cart__footer__total">
+            
+            <div class="cart__page__shipping">
+              {% assign free_shipping_text = block.settings.message | default: settings.message %}
+              {% assign is_enable = false %}
+              {% assign show_wheel = true %}
+
+              {% if block.settings.show_wheel == false %}
+                {% assign show_wheel = false %}
+              {% endif %}
+
+              {% if block.settings.message != blank %}
+                {% assign is_enable = true %}
+              {% endif %}
+
+              {% if settings.show_free_shipping_message and settings.free_shipping_limit != blank and free_shipping_text != blank %}
+                {% assign is_enable = true %}
+              {% endif %}
+
+              {% if is_enable %}
+                {% assign limit = settings.free_shipping_limit | plus: 0 %}
+                {% assign limit_currency = limit | times: 100 %}
+                {% assign subtotal_without_currency = cart.total_price | plus: 0 | divided_by: 100 %}
+
+                {% capture left_to_spend %}
+                  <span data-left-to-spend>{{ limit_currency | minus: cart.total_price | money_without_trailing_zeros }}</span>
+                {% endcapture %}
+
+                {% assign free_shipping_message = free_shipping_text | replace: '||amount||', left_to_spend %}
+                {% assign qualified_shipping_message = 'cart.general.qualified_shipping_message' | t %}
+                {% assign class_message = '' %}
+
+                {% if subtotal_without_currency >= limit %}
+                  {% if qualified_shipping_message != blank %}
+                    {% assign class_message = 'is-success' %}
+                  {% else %}
+                    {% assign class_message = 'is-hidden' %}
+                  {% endif %}
+                {% elsif subtotal_without_currency == 0 %}
+                  {% comment %} {% assign class_message = 'is-hidden' %} {% endcomment %}
+                {% endif %}
+
+                <p class="cart__message {{ class_message }}" data-cart-message="{% if qualified_shipping_message != blank %}true{% else %}false{% endif %}" data-limit="{{ limit }}">
+                  {% if show_wheel %}  
+                    {% assign percent = limit | minus: subtotal_without_currency | times: 100 | divided_by: limit %}
+                    {% assign percent = 100 | minus: percent %}
+
+                    {% if percent > 100 %}
+                      {% assign percent = 100 %}
+                    {% endif %}
+
+                    <small class="cart__graph">
+                      {% for i in (1..6) %}
+                        <small class="cart__graph-dot cart__graph-dot--{{ i }}"></small>
+                      {% endfor %}
+                      {%- assign stroke_dashoffset = '87.96459430051421' -%}
+                      {%- if settings.cart_style == 'compatible' -%}
+                        {%- assign math_pi = 3.14159265359 -%}
+                        {%- assign stroke_circumference = 28 | times: math_pi -%}
+                        {%- assign stroke_calculate = percent | times: stroke_circumference -%}
+                        {%- assign stroke_calculate = stroke_calculate | divided_by: 100 | divided_by: 2 -%}
+                        {%- assign stroke_dashoffset = stroke_circumference | minus: stroke_calculate -%}
+                      {%- endif -%}
+                      
+                      <svg height="18" width="18">
+                        <circle r="7" cx="9" cy="9" />
+                        <circle class="cart__graph-progress" stroke-dasharray="87.96459430051421 87.96459430051421" style="stroke-dashoffset: {{ stroke_dashoffset }}" data-cart-progress data-percent="{{ percent }}" r="7" cx="9" cy="9" />
+                      </svg>
+                    </small>
+                  {% endif %}
+
+                  {% if qualified_shipping_message != blank %}
+                    <span class="cart__message-success">{{ qualified_shipping_message }}</span>
+                  {% endif %}
+
+                  <span class="cart__message-default">
+                    {{ free_shipping_message }}
+                  </span>
+                </p>
+              {% endif %}
+            </div>
+            
+            <div class="page__footer__subtotal" data-cart-subtotal>
+              {% render 'cart-subtotal' %}
+            </div>
+
+            <p class="cart__footer__subtotal">
+              <span class="cart__footer__label">{{ 'cart.general.subtotal' | t }}</span>
+              <span class="cart__footer__value" data-cart-final>{{ cart.total_price | money }}</span>
+            </p>
+            <p class="cart__footer__small">{{ 'cart.general.shipping_at_checkout' | t }}</p>
+
+            <div class="cart__footer__checkout">
+              <button type="submit" name="checkout" class="btn btn--primary btn--large uppercase checkout__button">
+                {{ 'cart.general.checkout' | t }}
+              </button>
+            </div>
+          </div>         
+
+          <div class="cart__footer__update">
+            <span class="cart__update" data-update-button>
+              <span class="cart__update__icon">{% render 'icon-sync' %}</span>
+              <button type="submit" name="update" class="text-link">
+                {{ 'cart.general.update' | t }}
+              </button>
+            </span>
+          </div>
+
+          {% if additional_checkout_buttons and settings.cart_show_additional_buttons %}
+            <div class="cart__footer__additional">
+              <div class="additional-checkout-buttons">
+                {{ content_for_additional_checkout_buttons }}
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cart",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    },
+    {
+      "type": "paragraph",
+      "content": "Upsell is best as a one-click add to cart, so upsell products should have no variants.  Upsell products with variants will open a quick-view window. [Learn more](https://groupthought.com/link/pipeline/docs/upsell/variant)"
+    },
+    {
+      "type": "header",
+      "content": "Upsell in cart"
+    },
+    {
+      "type": "paragraph",
+      "content": "Use a dynamic source with the metafield name 'theme.upsell' to allow product upsells to follow users into the cart. Use any other name to limit this feature to the product page. [Learn more](https://groupthought.com/link/pipeline/docs/upsell/cart)"
+    }
+  ]
+}
+{% endschema %}

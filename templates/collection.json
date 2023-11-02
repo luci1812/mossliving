@@ -1,0 +1,74 @@
+{
+  "sections": {
+    "hero": {
+      "type": "collection-hero",
+      "settings": {
+        "text_align": "align--middle-center",
+        "show_title": true,
+        "show_title_below": false,
+        "show_description": false,
+        "show_description_below": false,
+        "show_image": true,
+        "bg_position": "center-center",
+        "image_height": "use_pixels_320",
+        "overlay_opacity": 20,
+        "overlay_color": "#000000",
+        "text_color": "text--white"
+      }
+    },
+    "subcollections": {
+      "type": "collection-sub",
+      "settings": {
+        "show_subcollection": false,
+        "text_color": "text--black",
+        "text_align": "align--middle-center",
+        "select_image": "collection",
+        "bg_position": "center-center",
+        "aspect_ratio": 0.6,
+        "overlay_opacity": 20,
+        "overlay_color": "#000000"
+      }
+    },
+    "main": {
+      "type": "collection",
+      "blocks": {
+        "87200d83-1994-4ea0-87b9-99ff4244eaa7": {
+          "type": "nav_links",
+          "settings": {
+            "collection_linklist": "collections"
+          }
+        },
+        "4d824df1-772c-4162-80c7-d9abee165c26": {
+          "type": "collections-selected",
+          "disabled": true,
+          "settings": {
+            "title": "Collections",
+            "collections_title": "Bedding Sets, Pillowcase Sets, Fitted Sheets, Flat Sheets, 'Form' Vase, Ceramics, French Linen, Ha Ko Paper Incense, Gift Card, Kimono, 'By The Sea' Coming Soon, New collection"
+          }
+        },
+        "9059f5a8-20d2-465f-8d42-7db082f6aa7a": {
+          "type": "filters",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "87200d83-1994-4ea0-87b9-99ff4244eaa7",
+        "4d824df1-772c-4162-80c7-d9abee165c26",
+        "9059f5a8-20d2-465f-8d42-7db082f6aa7a"
+      ],
+      "settings": {
+        "product_limit": 36,
+        "grid_setting_large": 3,
+        "grid_setting_small": "2",
+        "enable_layout_toggle": true,
+        "collection_sorting": true,
+        "hide_sidebar": false
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "subcollections",
+    "main"
+  ]
+}

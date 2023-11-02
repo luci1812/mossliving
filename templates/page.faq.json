@@ -1,0 +1,105 @@
+{
+  "sections": {
+    "faq": {
+      "type": "main-faq",
+      "blocks": {
+        "faq-0": {
+          "type": "text",
+          "settings": {
+            "title": "how do I care for linen?",
+            "content": "<p>Linen is a durable and hearty material that gets softer and lived in with every wear and wash. To see how to best care for your linen visit our Care Guide here https:\/\/mossliving.com.au\/pages\/caring-for-your-linen<\/p>"
+          }
+        },
+        "faq-1": {
+          "type": "text",
+          "settings": {
+            "title": "Where does Moss Living ship to?",
+            "content": "<p>We ship worldwide. All prices are listed in AUD unless otherwise noted.<\/p>"
+          }
+        },
+        "faq-2": {
+          "type": "text",
+          "settings": {
+            "title": "How much does shipping cost?",
+            "content": "<p>We offer free standard shipping Australia wide on all orders. (3-5 business days.) <\/p><p>International shipping costs $40 per order to all locations. <\/p>"
+          }
+        },
+        "12ed5ff9-7a25-4d93-8344-981a724c4a6f": {
+          "type": "text",
+          "settings": {
+            "title": "When exactly will I receive my order?",
+            "content": "<p>Once you've placed your order online, your package will be personally picked, wrapped and shipped out from our warehouse within 2 business days. From then, it depends on your shipping method. If you choose our free Australia Post option (for those ordering from Australia), your order will arrive within 2-7 business days, depending on your location.<\/p>"
+          }
+        },
+        "3c60c703-8d87-475c-822d-f576ec6c88e8": {
+          "type": "text",
+          "settings": {
+            "title": "Do you ship to P.O. Boxes?",
+            "content": "<p>We can ship to a P.O. Box address provided it is within Australia.<\/p>"
+          }
+        },
+        "335cee92-c273-4c8f-a47e-241da6ed4876": {
+          "type": "text",
+          "settings": {
+            "title": "Receiving your parcel",
+            "content": "<p>Please ensure your delivery address is attended. We recommend providing a business address where possible, or another address where someone will be available to receive the item between 9am – 5pm Monday-Friday to sign for it.<\/p>"
+          }
+        },
+        "7191e2bd-381d-4927-8d92-5c11d12e628c": {
+          "type": "text",
+          "settings": {
+            "title": "Do you offer returns?",
+            "content": "<p>Standard items that have been purchased at full price are eligible for a full refund or online store credit. Please note, we are unable to refund or credit the cost of shipping. The item must be in original condition, unworn, not altered and unwashed, with tags still attached. The item must be shipped within 7 days of your received date. <\/p><p>Sale items are non-refundable.<\/p><p>If you would like to return an international order during the 14-day period, please email <a href=\"mailto:info@wonderbox.com.au\"><span style=\"text-decoration:underline\">hello@mossliving.com.au<\/span><\/a> and we will provide you with additional information. Costs associated with the return are the responsibility of the customer and original shipping fees are non-refundable.<\/p><p>Physical and e-gift cards are non-refundable and cannot be changed or cancelled. <\/p>"
+          }
+        },
+        "9b555a54-169f-4e6e-871d-3924cf04e19a": {
+          "type": "text",
+          "settings": {
+            "title": "Do you exchange?",
+            "content": "<p>We can exchange your item provided the above return procedure has been met, and a new order may be placed. All shipping costs will be covered by the customer. If you wish to exchange please contact <a href=\"mailto:info@wonderbox.com.au\"><span style=\"text-decoration:underline\">hello@mossliving.com.au<\/span><\/a> for more information.<\/p>"
+          }
+        },
+        "72ac2aa5-d407-4324-88ae-63deb2345543": {
+          "type": "text",
+          "settings": {
+            "title": "How long is an online store credit valid for?",
+            "content": "<p>12 months from date of issue.<\/p>"
+          }
+        },
+        "3ed625f5-5587-43f4-8c52-acac2f0d9e6e": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "title": "What type of linen do you use?",
+            "content": "<p>We source the highest quality GOTS certified French Flax Linen. We then get this linen made into garments using AZO-free dye from our reputable and highly credible factory in China before it lands to us for quality control in our office in Currumbin. Gold Coast.<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq-0",
+        "faq-1",
+        "faq-2",
+        "12ed5ff9-7a25-4d93-8344-981a724c4a6f",
+        "3c60c703-8d87-475c-822d-f576ec6c88e8",
+        "335cee92-c273-4c8f-a47e-241da6ed4876",
+        "7191e2bd-381d-4927-8d92-5c11d12e628c",
+        "9b555a54-169f-4e6e-871d-3924cf04e19a",
+        "72ac2aa5-d407-4324-88ae-63deb2345543",
+        "3ed625f5-5587-43f4-8c52-acac2f0d9e6e"
+      ],
+      "settings": {
+        "title": "FAQ",
+        "align_text": "text-left",
+        "text_size": 1,
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--neutral",
+        "title_block": "Still have questions?",
+        "button_label": "Contact us",
+        "button_link": "shopify:\/\/pages\/contact-us"
+      }
+    }
+  },
+  "order": [
+    "faq"
+  ]
+}

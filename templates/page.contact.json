@@ -1,0 +1,49 @@
+{
+  "sections": {
+    "contact": {
+      "type": "section-contact",
+      "blocks": {
+        "name": {
+          "type": "text",
+          "settings": {
+            "title": "Full Name"
+          }
+        },
+        "email": {
+          "type": "email",
+          "settings": {
+            "title": "Email"
+          }
+        },
+        "484eaf26-b0d8-4536-9ae7-9cea486bd3ca": {
+          "type": "telephone",
+          "settings": {
+            "title": "Phone Number"
+          }
+        },
+        "message": {
+          "type": "body",
+          "settings": {
+            "title": "Message"
+          }
+        }
+      },
+      "block_order": [
+        "name",
+        "email",
+        "484eaf26-b0d8-4536-9ae7-9cea486bd3ca",
+        "message"
+      ],
+      "settings": {
+        "title": "Contact Us",
+        "text": "<p>Please contact us via the form below, or email us at <a href=\"mailto:hello@mossliving.com.au\" title=\"mailto:hello@mossliving.com.au\">hello@mossliving.com.au<\/a><\/p>",
+        "align_text": "text-center",
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--neutral"
+      }
+    }
+  },
+  "order": [
+    "contact"
+  ]
+}

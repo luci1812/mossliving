@@ -1,0 +1,143 @@
+<!-- /sections/page-faq.liquid-->
+
+<section class="main-faq {{ section.settings.text_color }} {{ section.settings.bg }} pt4  pb4" data-section-id="{{ section.id }}" data-section-type="page-faq">
+    <div class="main-faq__wrap">
+        <div class="text__standard {{ section.settings.align_text }}" data-accordion-group>
+            {% if section.settings.title != blank %}
+            <h2 class="faq__title h2 text-center">
+                {{ section.settings.title }}
+            </h2>
+            {% endif %}
+            {% for block in section.blocks %}
+            <div class="accordion__wrapper">
+                <button class="accordion__title"
+                data-accordion-trigger="accordion-{{ block.id }}"
+                aria-controls="accordion-{{ block.id }}"
+                aria-haspopup="true" 
+                aria-expanded="false">
+                {{ block.settings.title }}
+                </button>
+                {% assign font_size_class = section.settings.text_size | plus: 1 | prepend: 'font--' %}
+                <div class="accordion__body rte {{ font_size_class }}" 
+                data-accordion-body
+                id="accordion-{{ block.id }}">
+                    <span {{ block.shopify_attributes }}></span>
+                    {{ block.settings.content }}
+                </div>
+            </div>
+            {% else %}
+            <div class="homepage-page__content rte">
+                {{ 'home_page.onboarding.no_content' | t }}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="link-contact pt4 text-center">
+            <h3 class="">{{ section.settings.title_block }}</h3>
+            <a class=" btn btn--black btn--contact" href="{{ section.settings.button_link }}">{{ section.settings.button_label }}</a>
+        </div>
+    </div>
+  </section>
+  
+  {% schema %}
+  {
+    "name": "Main Faqs",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "select",
+        "id": "align_text",
+        "label": "Title alignment",
+        "default": "text-left",
+        "options": [
+          { "value": "text-left","label": "Left" },
+          { "value": "text-center","label": "Centered" },
+          { "value": "text-right","label": "Right" }
+        ]
+      },
+      {
+        "type":  "range",
+        "id":    "text_size",
+        "label": "Text size",
+        "min":    1,
+        "max":    5,
+        "step":   1,
+        "default":1
+      },
+      {
+        "type": "header",
+        "content": "Style"
+      },
+      {
+        "type": "select",
+        "id": "text_color",
+        "label": "Text color",
+        "default": "text--neutral",
+        "options": [
+          { "value": "text--neutral", "label": "Normal text"},
+          { "value": "text--white", "label": "White"},
+          { "value": "text--primary", "label": "Primary accent"},
+          { "value": "text--secondary", "label": "Secondary accent"},
+          { "value": "text--black", "label": "Black"},
+          { "value": "text--invert--primary", "label": "Primary dark accent"},
+          { "value": "text--invert--secondary", "label": "Secondary dark accent"},
+          { "value": "text--invert", "label": "Inverted text color"}
+        ]
+      },
+      {
+        "type": "select",
+        "id": "bg",
+        "label": "Background color",
+        "default": "palette--light bg--neutral",
+        "options": [
+          { "value": "palette--light bg--neutral", "label": "Default"},
+          { "value": "palette--light bg--accent", "label": "Light"},
+          { "value": "palette--dark bg--invert", "label": "Dark"},
+          { "value": "palette--dark bg--invert--accent", "label": "Dark accent"}
+        ]
+      },
+      {
+        "type": "text",
+        "id": "title_block",
+        "label": "Title",
+        "default": "Still have questions?"
+      },
+      {
+        "type": "text",
+        "id":"button_label",
+        "label": "Button label",
+        "default": "Contact us"
+      },
+      {
+        "type": "url",
+        "id": "button_link",
+        "label": "Link"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "Text block",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Frequently asked question"
+          },
+          {
+            "id": "content",
+            "type": "richtext",
+            "label": "Text",
+            "default": "<p>Share details about your shipping policies, item returns, or customer service.</p>"
+          }
+        ]
+      }
+    ]
+  }
+  {% endschema %}
+  

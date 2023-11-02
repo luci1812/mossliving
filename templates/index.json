@@ -1,0 +1,333 @@
+{
+  "sections": {
+    "hero": {
+      "type": "section-hero",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/4p4-WtyM.jpg",
+        "mobile_image": "shopify:\/\/shop_images\/4p4-WtyM.jpg",
+        "bg_position": "center-center",
+        "height": "use_screen_full",
+        "overlay_opacity": 10,
+        "overlay_color": "#000000",
+        "kicker": "",
+        "title": "",
+        "richtext": "<p>Explore our Timeless Collection.<\/p>",
+        "text_align": "align--middle-left",
+        "text_color": "text--white",
+        "link_text": "SHOP NEW ARRIVALS",
+        "link": "shopify:\/\/collections\/timeless-collection",
+        "button_color": "btn--white",
+        "button_style": "btn--outline"
+      }
+    },
+    "tabs": {
+      "type": "section-collection-tabs",
+      "blocks": {
+        "2e0b0a17-5a0c-4fef-89e5-4aa0481fccf4": {
+          "type": "collection",
+          "settings": {
+            "collection": "new-collection",
+            "title": "New Arrivals"
+          }
+        },
+        "tab-1": {
+          "type": "collection",
+          "settings": {
+            "collection": "wearables",
+            "title": "Wearables"
+          }
+        },
+        "tab-0": {
+          "type": "collection",
+          "settings": {
+            "collection": "duvet-sets",
+            "title": "Bedding"
+          }
+        },
+        "07a07bb3-73d9-4515-adc3-cba5faca7068": {
+          "type": "collection",
+          "disabled": true,
+          "settings": {
+            "collection": "ceramics",
+            "title": "Ceramics"
+          }
+        },
+        "7f2c9ada-93a4-49d2-8818-03eb769716d5": {
+          "type": "collection",
+          "settings": {
+            "collection": "towels",
+            "title": "Towels"
+          }
+        },
+        "e405dcdb-4fea-4025-8bc3-da3482c0db03": {
+          "type": "collection",
+          "disabled": true,
+          "settings": {
+            "collection": "form-vase",
+            "title": "Homewares"
+          }
+        },
+        "396b9c6c-d199-4f4e-a637-405f274b8447": {
+          "type": "collection",
+          "disabled": true,
+          "settings": {
+            "collection": "linen-throws",
+            "title": ""
+          }
+        }
+      },
+      "block_order": [
+        "2e0b0a17-5a0c-4fef-89e5-4aa0481fccf4",
+        "tab-1",
+        "tab-0",
+        "07a07bb3-73d9-4515-adc3-cba5faca7068",
+        "7f2c9ada-93a4-49d2-8818-03eb769716d5",
+        "e405dcdb-4fea-4025-8bc3-da3482c0db03",
+        "396b9c6c-d199-4f4e-a637-405f274b8447"
+      ],
+      "settings": {
+        "title": "Featured Collections",
+        "grid": 3,
+        "limit": 6,
+        "bg": "palette--light bg--neutral"
+      }
+    },
+    "custom": {
+      "type": "section-custom-content",
+      "blocks": {
+        "f84c231c-1187-40cd-af21-005f4fa12124": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/js5vO54I.jpg",
+            "bg_position": "center-center",
+            "overlay_opacity": 0,
+            "overlay_color": "#000000",
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "link_text": "",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "btn uppercase"
+          }
+        },
+        "video-0": {
+          "type": "collection",
+          "settings": {
+            "collection": "timeless-collection",
+            "kicker": "Timeless Collection",
+            "align_text": "text-center",
+            "text_color": "text--neutral",
+            "bg_color": "#f5f5f5",
+            "bg_accent": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "f84c231c-1187-40cd-af21-005f4fa12124",
+        "video-0"
+      ],
+      "settings": {
+        "height": "use_screen_two_thirds",
+        "padding": true,
+        "borders": false,
+        "wrapper": false,
+        "margin_bottom": false
+      }
+    },
+    "product-grid": {
+      "type": "section-collection",
+      "settings": {
+        "title": "best sellers",
+        "collection": "best-sellers",
+        "grid": 4,
+        "rows": 1,
+        "bg": "palette--light bg--neutral",
+        "show_view_all": false
+      }
+    },
+    "16521504705e6df779": {
+      "type": "section-testimonials",
+      "blocks": {
+        "f8d8e106-39e3-45ac-8701-ce41a87c2af9": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "<p>\"Christina the designer and owner of this small independent business on the Gold Coast is an absolute delight to deal with. These trousers are a quality linen with lots of body. They are a great cut, and keep their shape after many wears without having to constantly wash them.\"<\/p>",
+            "author": "- Diana"
+          }
+        },
+        "11c4284c-d169-4a4d-9132-c3006e174e54": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "<p>\"I love linen sheets and Moss Living’s linen was beautiful and soft. Very happy customer and the service was fabulous. Will be definately purchasing more in the future.\"<\/p>",
+            "author": "- Melissa"
+          }
+        },
+        "fc8fd3df-9de0-4a89-ba1e-0c26a05bff79": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "<p>\"Bought the linen blazer and shorts in both Moss Green and Sundae White. Amazing outfits. So comfortable, not too hot, not too cold, wears beautifully and is extremely versatile. In love!\"<\/p>",
+            "author": "- Jane"
+          }
+        },
+        "16521504701fb45dfb-1": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "<p>\"I love my linen shirt and wear it nearly every day! The material is so soft and breathable, and the oversized fit has been perfect throughout my pregnancy. Have this shirt now in two colours and want to get more.\"<\/p>",
+            "author": "- Nina"
+          }
+        },
+        "16521504701fb45dfb-0": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "<p>“Absolutely the most beautiful linens I have ever experienced. Thank you for such great service & giving myself the best sleeping experience in such a long time. \"<\/p>",
+            "author": "- tina"
+          }
+        }
+      },
+      "block_order": [
+        "f8d8e106-39e3-45ac-8701-ce41a87c2af9",
+        "11c4284c-d169-4a4d-9132-c3006e174e54",
+        "fc8fd3df-9de0-4a89-ba1e-0c26a05bff79",
+        "16521504701fb45dfb-1",
+        "16521504701fb45dfb-0"
+      ],
+      "settings": {
+        "title": "Testimonials",
+        "autoplay": false,
+        "autoplay_speed": 8,
+        "text_align": "align--middle-center",
+        "bg_color": "#f5f5f5",
+        "bg_accent": "#ffffff"
+      }
+    },
+    "1652062593857222e5": {
+      "type": "section-blog",
+      "settings": {
+        "title": "Journal",
+        "homepage_blog": "news",
+        "homepage_blog_count": 3,
+        "bg": "palette--light bg--neutral",
+        "color": "text--white",
+        "overlay_color": "#000000",
+        "aspect_ratio": 0.9,
+        "show_view_all": false,
+        "button_style": "btn--outline uppercase"
+      }
+    },
+    "165206274634f85d0e": {
+      "type": "apps",
+      "blocks": {
+        "dc5581c1-de90-43e1-adec-82cb9c1d5bbc": {
+          "type": "shopify:\/\/apps\/instafeed-instagram-feed\/blocks\/app-block\/c447db20-095d-4a10-9725-b5977662c9d5",
+          "settings": {
+            "heading_size": 20,
+            "feed_width": 100,
+            "html_area": ""
+          }
+        }
+      },
+      "block_order": [
+        "dc5581c1-de90-43e1-adec-82cb9c1d5bbc"
+      ],
+      "settings": {
+        "width": "wrapper--full",
+        "height": "margin--medium",
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--neutral"
+      }
+    },
+    "icons": {
+      "type": "section-icons",
+      "blocks": {
+        "icons-0": {
+          "type": "icon_block",
+          "settings": {
+            "icon_name": "icon-flax",
+            "icon_alt": "shopify:\/\/shop_images\/flax_2x_356e0620-56fd-4cd0-b465-41f35c05199b.png",
+            "icon_color": "#000000",
+            "title": "100% Natural French Flax",
+            "text": "",
+            "link_text": "",
+            "link_url": ""
+          }
+        },
+        "icons-1": {
+          "type": "icon_block",
+          "settings": {
+            "icon_name": "icon-delivery-truck",
+            "icon_alt": "shopify:\/\/shop_images\/delivery-truck-9_2x_0a5296e2-a06b-4566-a860-7ffa3895e48e.png",
+            "icon_color": "#000000",
+            "title": "Free Shipping",
+            "text": "",
+            "link_text": "",
+            "link_url": ""
+          }
+        },
+        "icons-2": {
+          "type": "icon_block",
+          "settings": {
+            "icon_name": "icon-leaves",
+            "icon_alt": "shopify:\/\/shop_images\/leaves_2x_0facfb28-3f3f-4d1c-b3c6-20f1152fe023.png",
+            "icon_color": "#000000",
+            "title": "Sustainable",
+            "text": "",
+            "link_text": "",
+            "link_url": ""
+          }
+        },
+        "2d19db98-0730-4c46-b6ab-22b31dce9b47": {
+          "type": "icon_block",
+          "settings": {
+            "icon_name": "icon-worldwide",
+            "icon_alt": "shopify:\/\/shop_images\/worldwide_2x_e2798d9c-a038-466d-bbba-5ed52ac7d219.png",
+            "icon_color": "#000000",
+            "title": "Gentle to the earth",
+            "text": "",
+            "link_text": "",
+            "link_url": ""
+          }
+        },
+        "efe343eb-0179-4bdc-985f-3fe942d4a9a3": {
+          "type": "icon_block",
+          "settings": {
+            "icon_name": "icon-leaf",
+            "icon_alt": "shopify:\/\/shop_images\/Bitmap_2x_4b72aa82-3f88-43a3-88b7-28dc2b53b3ad.png",
+            "icon_color": "#000000",
+            "title": "OEKO-TEX \/ SA8000 Standard",
+            "text": "",
+            "link_text": "",
+            "link_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "icons-0",
+        "icons-1",
+        "icons-2",
+        "2d19db98-0730-4c46-b6ab-22b31dce9b47",
+        "efe343eb-0179-4bdc-985f-3fe942d4a9a3"
+      ],
+      "settings": {
+        "title": "",
+        "bg": "palette--light bg--accent",
+        "icon_size": "icon--small",
+        "icon_alignment": "icon--top",
+        "layout": "grid--stacked",
+        "align_text": "text-center"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "tabs",
+    "custom",
+    "product-grid",
+    "16521504705e6df779",
+    "1652062593857222e5",
+    "165206274634f85d0e",
+    "icons"
+  ]
+}

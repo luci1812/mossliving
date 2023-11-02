@@ -1,0 +1,87 @@
+{
+  "sections": {
+    "hero": {
+      "type": "section-hero",
+      "settings": {
+        "image": "shopify:\/\/shop_images\/tMBOEaBE_slideshow.jpg",
+        "bg_position": "center-center",
+        "height": "use_screen_one_third",
+        "overlay_opacity": 0,
+        "overlay_color": "#000000",
+        "kicker": "",
+        "title": "About us",
+        "richtext": "",
+        "text_align": "align--middle-center",
+        "text_color": "text--white",
+        "link_text": "",
+        "link": "",
+        "button_color": "btn--white",
+        "button_style": "btn"
+      }
+    },
+    "main-about": {
+      "type": "main-about",
+      "settings": {
+        "kicker": "LUXURY WITH A CONSCIENCE",
+        "show_title": false,
+        "show_content": true,
+        "align_text": "text-center",
+        "layout_text": "one-column",
+        "img_logo": "shopify:\/\/shop_images\/Bitmap_1x_d8a7d06f-8ab4-4a75-801c-822471480b77.png",
+        "height": "margin--small",
+        "text_color": "text--neutral",
+        "bg": "palette--light bg--neutral"
+      }
+    },
+    "165459007341d805d2": {
+      "type": "section-custom-content",
+      "blocks": {
+        "e239be02-db54-4060-8704-60faf4d15371": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Rectangle_4_2x_968d1687-57b5-43a1-a11c-9436ea07fbd9.png",
+            "bg_position": "center-center",
+            "overlay_opacity": 15,
+            "overlay_color": "#000000",
+            "kicker": "",
+            "title": "",
+            "richtext": "",
+            "text_align": "align--middle-center",
+            "text_color": "text--white",
+            "link_text": "",
+            "link": "",
+            "button_color": "btn--white",
+            "button_style": "btn uppercase"
+          }
+        },
+        "5682f915-320d-4416-9079-c6cd23944f71": {
+          "type": "collection",
+          "settings": {
+            "collection": "fitted-sheets",
+            "kicker": "Shop the look",
+            "align_text": "text-center",
+            "text_color": "text--neutral",
+            "bg_color": "#f7f7f7",
+            "bg_accent": "#ffffff"
+          }
+        }
+      },
+      "block_order": [
+        "e239be02-db54-4060-8704-60faf4d15371",
+        "5682f915-320d-4416-9079-c6cd23944f71"
+      ],
+      "settings": {
+        "height": "use_screen_one_half",
+        "padding": true,
+        "borders": false,
+        "wrapper": false,
+        "margin_bottom": true
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "main-about",
+    "165459007341d805d2"
+  ]
+}

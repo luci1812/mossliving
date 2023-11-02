@@ -1,0 +1,57 @@
+{
+  "sections": {
+    "main": {
+      "type": "404",
+      "settings": {}
+    },
+    "16546533967debad3d": {
+      "type": "section-collection-tabs",
+      "blocks": {
+        "1654653396136fb091-0": {
+          "type": "collection",
+          "settings": {
+            "collection": "duvet-sets",
+            "title": "bedding"
+          }
+        },
+        "1654653396136fb091-1": {
+          "type": "collection",
+          "settings": {
+            "collection": "wearables",
+            "title": "Wearables"
+          }
+        },
+        "073edf95-24d0-4724-bb71-e88b12cf4c89": {
+          "type": "collection",
+          "settings": {
+            "collection": "ceramics",
+            "title": "Ceramics"
+          }
+        },
+        "651b6291-5142-4138-a4f5-27da68bc8e8c": {
+          "type": "collection",
+          "settings": {
+            "collection": "towels",
+            "title": "Towels"
+          }
+        }
+      },
+      "block_order": [
+        "1654653396136fb091-0",
+        "1654653396136fb091-1",
+        "073edf95-24d0-4724-bb71-e88b12cf4c89",
+        "651b6291-5142-4138-a4f5-27da68bc8e8c"
+      ],
+      "settings": {
+        "title": "featured collections",
+        "grid": 3,
+        "limit": 6,
+        "bg": "palette--light bg--neutral"
+      }
+    }
+  },
+  "order": [
+    "main",
+    "16546533967debad3d"
+  ]
+}

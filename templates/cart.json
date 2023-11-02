@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main": {
+      "type": "cart",
+      "settings": {
+        "product": "tobacco-french-flax-linen-pillowcase-set"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

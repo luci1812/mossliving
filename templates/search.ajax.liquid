@@ -1,0 +1,7 @@
+{% layout none %}
+
+({{ search.results_count }})
+
+{% if search.results_count > 0 %}
+    <a class="btn btn--full btn--black uppercase btn--view-all" href="{{ routes.search_url }}?q={{ search.terms }}&type={{ search.types | join: ',' }}">{{ 'general.search.view_all' | t }}</a>    
+{% endif %}
